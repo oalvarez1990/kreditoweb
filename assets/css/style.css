@@ -1,0 +1,39 @@
+.modal-body{
+    overflow: hidden;
+    background-color: white;
+}
+.subtitulo{
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 20px;
+}
+.modal-body label{
+    text-align: right;
+}
+.btnguardar{
+/* alinear a la izuierda */
+    float: left;
+    margin-left: 20px;
+    color: white;
+
+}
+
+.tabla_encabenzado {
+    background-color: #5f49d0;
+    margin-top: 35px;
+    color: #f4f4fa;
+  }
+.btnCredito{
+    background-color: #5f49d0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+
+    font-size: 1.2em;
+    font-weight: bold;     
+    float: left;
+    margin-left: 230px;
+    margin-top: -320px;
+    
+}
