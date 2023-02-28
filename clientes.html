@@ -16,7 +16,7 @@
     <section>
         <div></div>
         <h1
-            style="text-align: center;padding: 0px 0px 0px;padding-left: 0px;margin: 0px 0px 0px 0px;padding-bottom: 20px;margin-bottom: -20px;margin-top: -15px;padding-top: 18px;color: var(--bs-purple);border-style: solid;border-color: var(--bs-indigo);background: var(--bs-white);width: 944px;height: 85.25px;margin-left: 244px;border-radius: 5px;padding-right: 0px;margin-right: 43px;">
+            style="text-align: center;padding: 0px 0px 0px;padding-left: 0px;margin: 0px 0px 0px 0px;padding-bottom: 20px;margin-bottom: -20px;margin-top: 15px;padding-top: 18px;color: var(--bs-purple);border-style: solid;border-color: var(--bs-indigo);background: var(--bs-white);width: 944px;height: 85.25px;margin-left: 244px;border-radius: 5px;padding-right: 0px;margin-right: 43px;">
             Clientes</h1>
     </section>
     <section class="navbarleft"
@@ -38,21 +38,20 @@
 
     <section style="padding-top: 0px;padding-bottom: 103px;">
 
-        <!-- creacion boton buscar -->
+        <!--  boton buscar el cliente por nombre, nit/cc -->
         <div class="container"
             style="width: 1220px;margin-left: 225px;background: var(--bs-white);height: 575px;margin-right: 1px;padding-top: 72px;padding-bottom: 177px;margin-top: -348px;margin-bottom: -195px;position: relative;display: block;">
-            <div style="width: 284px;margin-right: -23px;margin-left: 246px;margin-bottom: 11px;padding-bottom: 0px;">
-                
+            <div style="width: 284px;margin-right: -23px;margin-left: 246px;margin-bottom: 11px;padding-bottom: 0px;"
+                id="contenedor-busqueda">
                 <input type="search" class="busqueda" id="busqueda"
                     style="margin-right: 9px;display: flex;margin-left: -221px;padding-bottom: 0px;margin-top: -35px;padding-top: 2px;"
                     required="" placeholder="Nombre, NIT o cc">
                 <div
                     style="padding-left: 77px;margin-left: 156px;margin-bottom: 7px;padding-bottom: 0px;margin-top: -29px;">
-                    <i class="fas fa-search"
+                    <i class="fas fa-search" id="buscar-icono"
                         style="padding-left: 0px;margin-right: 35px;width: 19px;background: rgba(78,56,213,0.33);height: 20px;margin-left: -221px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;margin-bottom: 26px;"></i>
                 </div>
             </div>
-
 
             <!-- creacion modal nuevo cliente -->
             <div class="text-end"
@@ -82,12 +81,12 @@
                                             <div class="form-group row">
                                                 <div class="col-sm-6">
                                                     <label class="text-start" for="nombre">Nombre</label>
-                                                    <input type="text" class="form-control" id="nombre"
+                                                    <input type="text" class="form-control" id="nombre" required=""
                                                         placeholder="Nombre">
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <label for="apellidos">Apellidos</label>
-                                                    <input type="text" class="form-control" id="apellido"
+                                                    <input type="text" class="form-control" id="apellido" required=""
                                                         placeholder="Apellidos">
                                                 </div>
                                             </div>
@@ -189,6 +188,8 @@
                     </thead>
                     <tbody class="" id="Tclientes">
                     </tbody>
+                    <div id="mensajeError" style="color: red;"></div>
+
                 </table>
 
                 <!-- finaliza creacion tabla clientes -->

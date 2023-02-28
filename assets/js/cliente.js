@@ -1,3 +1,4 @@
+// ==========================guardar clientes==========================
 const btnGuardar = document.getElementById("guardar");
 console.log("escuchando");
 btnGuardar.addEventListener("click", guardarCliente);
@@ -92,6 +93,8 @@ function mostrarClientes() {
     `;
   });
 }
+
+// ==========================editar clientes==========================
 function editarCliente(clientes, indice) {
   // Obtener el cliente a editar por su índice
   const cliente = clientes[indice];
@@ -145,6 +148,7 @@ function editarCliente(clientes, indice) {
   };
 }
 
+// ==========================eliminar clientes==========================
 function eliminarCliente(indice) {
   // Obtener el arreglo de clientes del localStorage
   let clientes = JSON.parse(localStorage.getItem("clientes"));
@@ -159,26 +163,37 @@ function eliminarCliente(indice) {
   mostrarClientes();
 }
 
-function buscarClientes() {
+// ==========================buscar clientes==========================
+const buscarClientes = () => {
   const inputBusqueda = document.getElementById("busqueda");
-  const filtro = inputBusqueda.value.toUpperCase();
-
-  // Obtener el arreglo de clientes desde el localStorage
-  const clientes = JSON.parse(localStorage.getItem("clientes"));
-
-  // Filtrar los clientes que coincidan con la búsqueda
-  const clientesFiltrados = clientes.filter(
-    (cliente) =>
-      cliente.nombre.toUpperCase().includes(filtro) ||
-      cliente.nitcc.toUpperCase().includes(filtro)
-  );
-
-  // Mostrar los clientes filtrados en la tabla
   const tablaClientes = document.getElementById("Tclientes");
-  let tablaClientesHTML = "";
-    // Agregar cada cliente filtrado al contenido HTML de la tabla
-    clientesFiltrados.forEach((cliente, indice) => {
-        tablaClientesHTML += `
+  const mensajeError = document.getElementById("mensajeError");
+  const clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+
+  const filtrarClientes = () => {
+    const filtro = inputBusqueda.value.trim().toUpperCase();
+    const tipoBusqueda = inputBusqueda.placeholder.toLowerCase();
+
+    // Validar que el filtro no esté vacío ni contenga caracteres inválidos
+    if (filtro === "" || /[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]/.test(filtro)) {
+      mensajeError.innerText = "Ingrese un valor válido para la búsqueda";
+      return;
+    }
+
+    // Filtrar los clientes que coincidan con la búsqueda
+    const clientesFiltrados = clientes.filter(
+      (cliente) =>
+        cliente.nombre.toUpperCase().includes(filtro) ||
+        cliente.nitcc.toUpperCase().includes(filtro)
+    );
+
+    // Mostrar los clientes filtrados en la tabla
+    tablaClientes.innerHTML = "";
+    if (clientesFiltrados.length === 0) {
+      mensajeError.innerText = `No se encontraron clientes por ${tipoBusqueda}`;
+    } else {
+      clientesFiltrados.forEach((cliente, indice) => {
+        tablaClientes.innerHTML += `
           <tr>
             <td>${cliente.nombre} ${cliente.apellido}</td>
             <td>${cliente.nitcc}</td>
@@ -195,11 +210,13 @@ function buscarClientes() {
           </tr>
         `;
       });
-    
-      // Asignar el contenido HTML de la tabla a la propiedad innerHTML
-      tablaClientes.innerHTML = tablaClientesHTML;
-    
-    
-    
-    
-}
+
+      mensajeError.innerText = "";
+    }
+  };
+
+  inputBusqueda.addEventListener("input", filtrarClientes);
+};
+
+// Llamado a la función buscarClientes()
+buscarClientes();
